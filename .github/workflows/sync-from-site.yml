@@ -26,6 +26,10 @@ jobs:
         shell: pwsh
         run: .\scripts\sync-from-site.ps1
 
+      - name: Generate Mihomo base configs
+        shell: pwsh
+        run: .\scripts\build-mihomo-base.ps1
+
       - name: Classify synced files for release
         id: classify
         shell: pwsh

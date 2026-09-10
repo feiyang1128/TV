@@ -1,3 +1,4 @@
+# Generated from base-common.yml by scripts/build-mihomo-base.ps1.
 mixed-port: 7890
 allow-lan: false
 bind-address: '*'
@@ -9,20 +10,33 @@ tcp-concurrent: true
 dns:
   enable: true
   ipv6: false
-  default-nameserver: [223.5.5.5, 119.29.29.29, 114.114.114.114]
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   respect-rules: true
-  proxy-server-nameserver: [223.5.5.5, 119.29.29.29, 114.114.114.114]
-  nameserver: [223.5.5.5, 119.29.29.29, 114.114.114.114]
-  fallback: [1.1.1.1, 8.8.8.8]
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
-    nameserver-policy: [gfw]
-    ipcidr: [240.0.0.0/4]
-    domain: [+.google.com, +.facebook.com, +.youtube.com]
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - +.google.com
+      - +.facebook.com
+      - +.youtube.com
 rule-providers:
   CloudflareExtra:
     type: http
